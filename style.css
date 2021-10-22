@@ -1,0 +1,35 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: cadetblue;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+}
+
+.gameboard {
+    width: 25rem;
+    height: 25rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+
+}
+
+.gameboard>div {
+    background-color: aquamarine;
+    border: 2px solid red;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

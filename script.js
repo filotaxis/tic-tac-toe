@@ -139,6 +139,7 @@ const main = (() => {
     return {
         play,
     }
+    
 })();
 
 main.play();

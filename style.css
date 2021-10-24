@@ -24,6 +24,10 @@ body {
 }
 
 .gameboard>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
     background-color: aquamarine;
     border: 2px solid red;
 }

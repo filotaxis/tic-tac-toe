@@ -1,22 +1,30 @@
 const Gameboard = (() => {
     const gridSpace = document.querySelector(".gameboard");
     let gameboard = new Array(9);
-    gameboard[0] = "X";
-    gameboard[1] = "X";
-    gameboard[2] = "O";
-    gameboard[3] = "X";
-    gameboard[4] = "O";
-    gameboard[5] = "X";
-    gameboard[6] = "O";
-    gameboard[7] = "X";
-    gameboard[8] = "O";
+    const winningConditions = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
 
-    const display = () => {
-        for (let i = 0; i < gameboard.length; i++){
-            const square = document.createElement("div");
-            square.setAttribute("data-id", i);
-            square.textContent = gameboard[i];
-            gridSpace.appendChild(square);
+    const display = (winnerCombination) => {
+        for (let i = 0; i < gameboard.length; i++) {
+            const tile = document.createElement("div");
+            tile.setAttribute("data-id", i);
+            tile.textContent = gameboard[i];
+            if (winnerCombination) {
+                if (i === winnerCombination[0] ||
+                    i === winnerCombination[1] ||
+                    i === winnerCombination[2]) {
+                    tile.style.backgroundColor = "tomato";
+                    }
+            }
+            gridSpace.appendChild(tile);
         }
     }
 
@@ -26,33 +34,80 @@ const Gameboard = (() => {
         }
     }
 
+    const winner = () => {
+        let = false;
+        for (let i = 0; i < winningConditions.length; i++){
+            const winCondition = winningConditions[i];
+            let a = gameboard[winCondition[0]];
+            let b = gameboard[winCondition[1]];
+            let c = gameboard[winCondition[2]];
+
+            if (a === b && a === c && a !== undefined) {
+                won = true;
+                console.log(`${a} won`);
+                for (let i = 0; i < 9; i++){
+                    if (gameboard[i] === undefined) {
+                        gameboard[i] = null;
+                    }
+                }
+                return winCondition;
+            }
+        }
+    }
+
     return {
         gameboard,
         gridSpace,
         display,
         resetDisplay,
+        winner,
     }
 })();
 
 
-const Player = symbol => {
-    
-    const select = () => {
-        Gameboard.gridSpace.addEventListener("click", (e) => {
-            const id = e.target.getAttribute("data-id")
-            Gameboard.gameboard[id] = symbol;
-            Gameboard.resetDisplay();
-            Gameboard.display();
-        });    
-        
+const Player = (emoji) => {
+    const icon = emoji ;
+
+    return {
+        icon,
     }
-    return { select, };
 }
 
+const Game = (() => {
 
-const player1 = Player("🔥");
+    let turn = true;
 
-player1.select();
+    const play = (player1, player2) => {
+        Gameboard.gridSpace.addEventListener("click", (e) => {
+            const id = e.target.getAttribute("data-id");
+            if (Gameboard.gameboard[id] === undefined) {
+                if (turn === true) {
+                    Gameboard.gameboard[id] = player1.icon;
+                    turn = !turn;
+                }
+                else {
+                    Gameboard.gameboard[id] = player2.icon;
+                    turn = !turn;
+                }
+
+                const winnerCombination = Gameboard.winner();
+                // console.log(winnerCombination);
+                Gameboard.resetDisplay();
+                Gameboard.display(winnerCombination);
+            }
+        });
+
+    }
+
+    return {
+        play,
+    }
+
+})();
+
+const player1 = Player("🐱");
+const player2 = Player("🐶");
+Game.play(player1, player2);
 Gameboard.display();
 
 

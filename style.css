@@ -108,3 +108,19 @@ footer>p>a:hover {
     color: #f25f5c;
 
 }
+
+@media (max-width: 600px){
+    .announce {
+        width: 80%;        
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .gameboard {
+        width: 18rem;
+        height: 18rem;
+        grid-auto-rows: minmax(70px, auto);
+    }
+
+}

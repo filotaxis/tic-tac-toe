@@ -12,6 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+
 }
 
 main {
@@ -24,7 +25,7 @@ main {
 }
 
 .announce {
-    background-color: #3c6e71;
+    background-color: #247ba0;
     width: 25rem;
     border: 0.5rem solid #ffe066;
     border-radius: 2rem;
@@ -76,15 +77,15 @@ h1 {
 .restart>button {
     font-size: 1.5rem;
     font-weight: 700;
-    background-color: #3c6e71;
-    border: 2px solid #f7fff7;
-    border-radius: 0.5rem;
+    background-color: #247ba0;
+    border: 0.5rem solid #ffe066;
+    border-radius: 1rem;
     color: #f7fff7;
     padding: 1rem 2rem;
 }
 
 .restart>button:hover {
-    background-color: #247ba0;
+    background-color: #3da5d1;
 
 }
 
